@@ -10,6 +10,7 @@ int main()
     cin >> n;
 
     int p[n], bt[n], a_t[n], ct[n], tat[n], wt[n];
+    float wtavg = 0, tatavg = 0;
 
     for(int i = 0; i < n; i++)
     {
@@ -36,6 +37,10 @@ int main()
                     swap(p[i],p[j]);
                 }
             }
+            else if(a_t[i] == a_t[j] && bt[i] == bt[j])
+            {
+                p[i] = i+1;
+            }
         }
     }
 
@@ -49,6 +54,9 @@ int main()
     {
         tat[i] = ct[i] - a_t[i];
         wt[i] = tat[i] - bt[i];
+        wtavg += wt[i];
+        tatavg += tat[i];
+
     }
     cout << "\nProcess" << "\t\tArrival Time" << "\tBurst Time" << "\tCompletion Time" << "\t\tTurn Around Time" <<
          "\tWaiting Time" << endl;
@@ -57,5 +65,9 @@ int main()
         cout << "P" << p[i] << "\t\t" << a_t[i] << "\t\t" << bt[i] << "\t\t" << ct[i] << "\t\t\t" << tat[i] <<
              "\t\t\t" << wt[i] << endl;
     }
+
+    cout << fixed << setprecision(3) << "\nAverage Waiting Time: " << wtavg/n << endl;
+    cout << fixed << setprecision(3) << "Average Turnaround Time: " << tatavg/n << endl;
+
     return 0;
 }
